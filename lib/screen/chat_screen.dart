@@ -76,13 +76,49 @@ class _ChatScreenState extends State<ChatScreen> {
         IconButton(
           onPressed: () {},
           icon: message.isLiked
-              ? Icon(Icons.favorite)
-              : Icon(Icons.favorite_border),
+              ? const Icon(Icons.favorite)
+              : const Icon(Icons.favorite_border),
           color: message.isLiked
               ? Theme.of(context).primaryColor
               : Colors.blueGrey,
         )
       ],
+    );
+  }
+
+//method
+  _buildMessageCompolser() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      height: 70.0,
+      color: Colors.white,
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.photo,
+                size: 25,
+                color: Theme.of(context).primaryColor,
+              )),
+          const Expanded(
+              child: TextField(
+            textCapitalization:
+                TextCapitalization.sentences, // first word of sentence
+            decoration: InputDecoration.collapsed(
+              //to disappear underlie form below textField, use InputDecoration.collapsed
+              hintText: 'Send a message...',
+            ),
+          )),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.send,
+                size: 25,
+                color: Theme.of(context).primaryColor,
+              )),
+        ],
+      ),
     );
   }
 
@@ -138,6 +174,8 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ),
+          //
+          _buildMessageCompolser(),
         ],
       ),
     );
