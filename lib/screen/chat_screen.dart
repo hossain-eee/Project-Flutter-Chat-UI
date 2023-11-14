@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/model/message_model.dart';
 import 'package:flutter_chat_ui/model/user_model.dart';
 
+TextEditingController userMessage = TextEditingController();
+
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, required this.user});
   final User user;
@@ -101,8 +103,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 size: 25,
                 color: Theme.of(context).primaryColor,
               )),
-          const Expanded(
+          Expanded(
               child: TextField(
+            controller: userMessage,
             textCapitalization:
                 TextCapitalization.sentences, // first word of sentence
             decoration: InputDecoration.collapsed(
@@ -111,7 +114,19 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           )),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // messages[1].text = userMessage.text;
+                messages.add(Message(
+                    sender: currentUser,
+                    time: '${DateTime.now().hour}',
+                    text: userMessage.text,
+                    isLiked: false,
+                    unread: false));
+                setState(() {});
+                userMessage.clear();
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text('Message send')));
+              },
               icon: Icon(
                 Icons.send,
                 size: 25,
@@ -166,7 +181,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   child: ListView.builder(
                     reverse:
-                        true, //chat screen should display data bottom to top, that means reverse
+                        false, //chat screen should display data bottom to top, that means reverse
                     padding: const EdgeInsets.only(top: 15.0),
                     itemCount: messages.length,
                     itemBuilder: (context, index) {

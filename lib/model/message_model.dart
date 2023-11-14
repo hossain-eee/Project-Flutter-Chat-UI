@@ -140,32 +140,5 @@ List<Message> messages = [
     isLiked: false,
     unread: true,
   ),
-  Message(
-    sender: currentUser,
-    time: '2:30 PM',
-    text: 'Hello, i am current user',
-    isLiked: false,
-    unread: true,
-  ),
-  Message(
-    sender: currentUser,
-    time: '2:30 PM',
-    text: 'Hello, i am current user',
-    isLiked: false,
-    unread: true,
-  ),
-  Message(
-    sender: currentUser,
-    time: '2:30 PM',
-    text: 'Hello, i am current user',
-    isLiked: false,
-    unread: true,
-  ),
-  Message(
-    sender: currentUser,
-    time: '2:30 PM',
-    text: 'Hello, i am current user',
-    isLiked: false,
-    unread: true,
-  ),
+
 ];
