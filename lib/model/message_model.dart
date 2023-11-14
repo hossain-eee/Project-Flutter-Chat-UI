@@ -59,21 +59,21 @@ List<Message> chats = [
     isLiked: false,
     unread: false,
   ),
-Message(
+  Message(
     sender: sophia,
     time: '2:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
     isLiked: false,
     unread: true,
   ),
-   Message(
+  Message(
     sender: steven,
     time: '1:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
     isLiked: false,
     unread: false,
   ),
-   Message(
+  Message(
     sender: sam,
     time: '12:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
@@ -130,6 +130,41 @@ List<Message> messages = [
     sender: james,
     time: '2:00 PM',
     text: 'I ate so much food today.',
+    isLiked: false,
+    unread: true,
+  ),
+  Message(
+    sender: currentUser,
+    time: '2:30 PM',
+    text: 'Hello, i am current user',
+    isLiked: false,
+    unread: true,
+  ),
+  Message(
+    sender: currentUser,
+    time: '2:30 PM',
+    text: 'Hello, i am current user',
+    isLiked: false,
+    unread: true,
+  ),
+  Message(
+    sender: currentUser,
+    time: '2:30 PM',
+    text: 'Hello, i am current user',
+    isLiked: false,
+    unread: true,
+  ),
+  Message(
+    sender: currentUser,
+    time: '2:30 PM',
+    text: 'Hello, i am current user',
+    isLiked: false,
+    unread: true,
+  ),
+  Message(
+    sender: currentUser,
+    time: '2:30 PM',
+    text: 'Hello, i am current user',
     isLiked: false,
     unread: true,
   ),
