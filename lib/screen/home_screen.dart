@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_ui/widgets/category_selector.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,7 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      
+      body: Column(
+        children: <Widget>[
+          CategorySelector(),
+        ],
+      ),
     );
   }
 }
