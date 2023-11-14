@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/model/message_model.dart';
+import 'package:flutter_chat_ui/screen/chat_screen.dart';
 
 class RecentChat extends StatelessWidget {
   const RecentChat({super.key});
@@ -26,93 +27,101 @@ class RecentChat extends StatelessWidget {
               itemCount: chats.length,
               itemBuilder: (context, index) {
                 final Message chat = chats[index];
-                return Container(
-                  margin: const EdgeInsets.only(top: 5, bottom: 5, right: 15),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    color: chat.unread ? const Color(0XFFFFEFEE) : Colors.white,
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
+                return GestureDetector(
+                  onTap: (){
+                     Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ChatScreen(user: chat.sender);
+                    }));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 5, bottom: 5, right: 15),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 35,
-                            backgroundImage: AssetImage(chat.sender.imageUrl),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                chat.sender.name,
-                                style: const TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.43,
-                                child: Text(
-                                  chat.text,
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.blueGrey,
-                                    fontWeight: FontWeight.w600,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
+                    decoration: BoxDecoration(
+                      color: chat.unread ? const Color(0XFFFFEFEE) : Colors.white,
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            chat.time,
-                            style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          chat.unread
-                              ? Container(
-                                  width: 40,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      borderRadius: BorderRadius.circular(30)),
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    'New',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundImage: AssetImage(chat.sender.imageUrl),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  chat.sender.name,
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.43,
+                                  child: Text(
+                                    chat.text,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.blueGrey,
+                                      fontWeight: FontWeight.w600,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                )
-                              : const Text(''),
-                        ],
-                      )
-                    ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              chat.time,
+                              style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            chat.unread
+                                ? Container(
+                                    width: 40,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        borderRadius: BorderRadius.circular(30)),
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      'New',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  )
+                                : const Text(''),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 );
               }),
