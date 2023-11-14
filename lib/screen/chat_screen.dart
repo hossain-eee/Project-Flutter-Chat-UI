@@ -144,39 +144,44 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                child: ListView.builder(
-                  reverse:
-                      true, //chat screen should display data bottom to top, that means reverse
-                  padding: const EdgeInsets.only(top: 15.0),
-                  itemCount: messages.length,
-                  itemBuilder: (context, index) {
-                    final Message message = messages[index];
-                    final bool isMe = message.sender.id == currentUser.id;
-                    return _buildMessage(message, isMe);
-                  },
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  child: ListView.builder(
+                    reverse:
+                        true, //chat screen should display data bottom to top, that means reverse
+                    padding: const EdgeInsets.only(top: 15.0),
+                    itemCount: messages.length,
+                    itemBuilder: (context, index) {
+                      final Message message = messages[index];
+                      final bool isMe = message.sender.id == currentUser.id;
+                      return _buildMessage(message, isMe);
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          //
-          _buildMessageCompolser(),
-        ],
+            //
+            _buildMessageCompolser(),
+          ],
+        ),
       ),
     );
   }
