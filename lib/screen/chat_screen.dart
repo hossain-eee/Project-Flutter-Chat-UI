@@ -12,61 +12,66 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   _buildMessage(Message message, bool isMe) {
+    final Container msg = Container(
+      width: MediaQuery.of(context).size.width * 0.75,
+      margin: isMe
+          ? const EdgeInsets.only(
+              top: 8,
+              bottom: 8,
+              left: 80,
+            )
+          : const EdgeInsets.only(
+              top: 8,
+              bottom: 8,
+              // right: 80,
+            ),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      decoration: BoxDecoration(
+        color: isMe
+            ? Theme.of(context).colorScheme.secondary
+            : const Color(0XFFFFEFEE),
+        borderRadius: isMe
+            ? const BorderRadius.only(
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+              )
+            : const BorderRadius.only(
+                topRight: Radius.circular(15),
+                bottomRight: Radius.circular(15),
+              ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            message.time,
+            style: const TextStyle(
+              color: Colors.blueGrey,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            message.text,
+            style: const TextStyle(
+              color: Colors.blueGrey,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (isMe) {
+      return msg;
+    }
     return Row(
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.75,
-          margin: isMe
-              ? const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 80,
-                )
-              : const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  // right: 80,
-                ),
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-          decoration: BoxDecoration(
-            color: isMe
-                ? Theme.of(context).colorScheme.secondary
-                : const Color(0XFFFFEFEE),
-            borderRadius: isMe
-                ? const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    bottomLeft: Radius.circular(15),
-                  )
-                : const BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    bottomRight: Radius.circular(15),
-                  ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                message.time,
-                style: const TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                message.text,
-                style: const TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
+        msg,
         //button for favorite icon
         IconButton(
           onPressed: () {},
