@@ -105,6 +105,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   topRight: Radius.circular(30),
                 ),
                 child: ListView.builder(
+                  reverse: true, //chat screen should display data bottom to top, that means reverse
                   padding: const EdgeInsets.only(top: 15.0),
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
